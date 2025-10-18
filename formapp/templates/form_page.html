@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Başvuru Formu</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3a0ca3;
+      --accent: #f72585;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --success: #4cc9f0;
+      --gray: #adb5bd;
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+    
+      :root {
+      --primary: #4361ee;
+      --secondary: #3a0ca3;
+      --accent: #f72585;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --success: #4cc9f0;
+      --gray: #adb5bd;
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    header::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+      margin: 40px 0 20px;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    h2 i {
+      color: var(--accent);
+    }
+    
+    /* Form Stilleri */
+    .form-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 50px;
+    }
+    
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--secondary);
+      font-size: 0.9rem;
+    }
+    
+    input, select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background-color: #f8f9fa;
+    }
+    
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      background-color: #fff;
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      margin-top: 10px;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+    }
+    
+    .btn i {
+      margin-right: 8px;
+    }
+    
+    /* Başvurular kartları */
+    .submissions {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 25px;
+    }
+    
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      transition: var(--transition);
+      border-top: 4px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+    
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .card h3 {
+      margin: 0;
+      font-size: 1.3rem;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .card h3 i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .card p {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+    
+    .card p i {
+      color: var(--accent);
+      width: 20px;
+    }
+    
+    .files {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    
+    .file-btn {
+      padding: 6px 12px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+    
+    .file-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+    }
+    
+    .no-submissions {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+    }
+    
+    .no-submissions i {
+      font-size: 3rem;
+      color: var(--gray);
+      margin-bottom: 15px;
+    }
+    
+    .no-submissions p {
+      color: var(--gray);
+      font-size: 1.1rem;
+    }
+
+    /* Ek bilgi stil */
+    .card-info {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    
+    .card-info p {
+      margin: 5px 0;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    /* Dosya sayacı */
+    .file-count {
+      background: var(--accent);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      margin-left: 8px;
+    }
+    
+    /* Responsive tasarım */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .form-container {
+        padding: 20px;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .submissions {
+        grid-template-columns: 1fr;
+      }
+
+      .files {
+        gap: 6px;
+      }
+      
+      .file-btn {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+      }
+    }
+    
+    .file-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+    }
+    
+    .no-submissions {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+    }
+    
+    .no-submissions i {
+      font-size: 3rem;
+      color: var(--gray);
+      margin-bottom: 15px;
+    }
+    
+    .no-submissions p {
+      color: var(--gray);
+      font-size: 1.1rem;
+    }
+
+    /* Ek bilgi stil */
+    .card-info {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    
+    .card-info p {
+      margin: 5px 0;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    /* Dosya sayacı */
+    .file-count {
+      background: var(--accent);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      margin-left: 8px;
+    }
+    
+    /* Responsive tasarım */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .form-container {
+        padding: 20px;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .submissions {
+        grid-template-columns: 1fr;
+      }
+
+      .files {
+        gap: 6px;
+      }
+      
+      .file-btn {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>KIEL Adayları Başvuru Formları</h1>
+    </header>
+
+    <!-- Başvurular -->
+    <h2><i class="fas fa-list-check"></i> Başvurular</h2>
+    <div class="submissions">
+      {% for s in submissions %}
+      <div class="card">
+        <h3>
+          <i class="fas fa-user"></i> {{ s.first_name }} {{ s.last_name }}
+          <span class="file-count">{{ s.cv|yesno:"1,0" }}{{ s.id_card|yesno:"1,0" }}{{ s.license|yesno:"1,0" }}{{ s.diploma|yesno:"1,0" }}{{ s.graduation_certificate|yesno:"1,0" }}{{ s.internship_certificate|yesno:"1,0" }}{{ s.sgk_report|yesno:"1,0" }}{{ s.criminal_record|yesno:"1,0" }}{{ s.criminal_record_de|yesno:"1,0" }}{{ s.family_record|yesno:"1,0" }}{{ s.formul_a|yesno:"1,0" }}{{ s.formul_b|yesno:"1,0" }}{{ s.additional_documents|yesno:"1,0" }} dosya</span>
+        </h3>
+        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ s.email }}</p>
+        <p><i class="fas fa-phone"></i> <strong>Telefon:</strong> {{ s.phone }}</p>
+        <p><i class="fas fa-globe"></i> <strong>Nerden Ulaştı:</strong> {{ s.source }}</p>
+        <p><i class="fas fa-graduation-cap"></i> <strong>Eğitim:</strong> {{ s.get_education_display }}</p>
+        <p><i class="fas fa-briefcase"></i> <strong>Meslek:</strong> {{ s.get_profession_display }}</p>
+        
+        <div class="files">
+          <!-- Mevcut 5 dosya -->
+          {% if s.cv %}<a class="file-btn" href="{{ s.cv.url }}" target="_blank"><i class="fas fa-file-pdf"></i> CV</a>{% endif %}
+          {% if s.kimlik_karti %}<a class="file-btn" href="{{ s.kimlik_karti.url }}" target="_blank"><i class="fas fa-id-card"></i> Kimlik</a>{% endif %}
+          {% if s.ehliyet %}<a class="file-btn" href="{{ s.ehliyet.url }}" target="_blank"><i class="fas fa-id-card"></i> Ehliyet</a>{% endif %}
+          {% if s.diploma %}<a class="file-btn" href="{{ s.diploma.url }}" target="_blank"><i class="fas fa-certificate"></i> Diploma</a>{% endif %}
+          {% if s.mezuniyet_sertifikasi %}<a class="file-btn" href="{{ s.mezuniyet_sertifikasi.url }}" target="_blank"><i class="fas fa-graduation-cap"></i> Mezuniyet</a>{% endif %}
+          
+          <!-- Eksik 8 dosya -->
+          {% if s.staj_sertifikasi %}<a class="file-btn" href="{{ s.staj_sertifikasi.url }}" target="_blank"><i class="fas fa-file-contract"></i> Staj</a>{% endif %}
+          {% if s.sgk_hizmet_dokumu %}<a class="file-btn" href="{{ s.sgk_hizmet_dokumu.url }}" target="_blank"><i class="fas fa-file-medical"></i> SGK</a>{% endif %}
+          {% if s.adli_sicil %}<a class="file-btn" href="{{ s.adli_sicil.url }}" target="_blank"><i class="fas fa-gavel"></i> Adli Sicil</a>{% endif %}
+          {% if s.adli_sicil_almanca %}<a class="file-btn" href="{{ s.adli_sicil_almanca_de.url }}" target="_blank"><i class="fas fa-gavel"></i> Almanya Sicil</a>{% endif %}
+          {% if s.vukuatli_nufus_kayit_ornegi %}<a class="file-btn" href="{{ s.vukuatli_nufus_kayit_ornegi.url }}" target="_blank"><i class="fas fa-users"></i> Aile Kaydı</a>{% endif %}
+          {% if s.formul_a %}<a class="file-btn" href="{{ s.formul_a.url }}" target="_blank"><i class="fas fa-file-alt"></i> Formül A</a>{% endif %}
+          {% if s.formul_b %}<a class="file-btn" href="{{ s.formul_b.url }}" target="_blank"><i class="fas fa-file-alt"></i> Formül B</a>{% endif %}
+          {% if s.ikametgah %}<a class="file-btn" href="{{ s.ikametgah.url }}" target="_blank"><i class="fas fa-file-alt"></i> İkametgah</a>{% endif %}
+          {% if s.ek_belgeler %}<a class="file-btn" href="{{ s.ek_belgeler.url }}" target="_blank"><i class="fas fa-file-archive"></i> Ek Belgeler</a>{% endif %}
+        </div>
+
+        <div class="card-info">
+        <p><i class="fas fa-calendar"></i> <strong>Başvuru Tarihi:</strong> {{ s.created_at|date:"d.m.Y H:i" }}</p>          {% if s.terms %}<p><i class="fas fa-check-circle"></i> Kullanım koşulları kabul edildi</p>{% endif %}
+          {% if s.privacy %}<p><i class="fas fa-check-circle"></i> Gizlilik politikası kabul edildi</p>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+      {% if submissions|length == 0 %}
+        <div class="no-submissions">
+          <i class="fas fa-inbox"></i>
+          <p>Henüz başvuru bulunmamaktadır.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <script>
+    // Küçük bir etkileşim ekleyelim
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.card');
+      
+      cards.forEach(card => {
+        card.addEventListener('click', function(e) {
+          if (!e.target.classList.contains('file-btn')) {
+            this.classList.toggle('active');
+          }
+        });
+      });
+
+      // Dosya sayacını güncelle
+      function updateFileCounts() {
+        cards.forEach(card => {
+          const fileCount = card.querySelectorAll('.file-btn').length;
+          const countElement = card.querySelector('.file-count');
+          if (countElement) {
+            countElement.textContent = fileCount + ' dosya';
+          }
+        });
+      }
+      
+      updateFileCounts();
+    });
+  </script>
+</body>
+</html>
